@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FREE FIRE — Contact Demo</title>
+  <meta name="description" content="Single-file template with mailto contact behavior." />
+  <style>
+    :root{ --bg:#0f1724; --card:#0b1220; --muted:#94a3b8; --accent:#06b6d4; --glass: rgba(255,255,255,0.04); }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:linear-gradient(180deg,#071024 0%, #071428 100%); color:#e6eef6; -webkit-font-smoothing:antialiased}
+    .container{max-width:1100px;margin:24px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav a{color:var(--muted);text-decoration:none;margin-left:14px}
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;margin-top:28px}
+    .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 18px rgba(2,6,23,0.6);}
+    h1{margin:0 0 8px 0;font-size:28px}
+    p.lead{color:var(--muted);margin:0 0 14px 0}
+    @media (max-width:880px){.hero{grid-template-columns:1fr} .container{padding:12px}}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .item{padding:12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.03)}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7c3aed);color:#031226;text-decoration:none;font-weight:600;border:none;cursor:pointer}
+    footer{margin-top:26px;color:var(--muted);font-size:13px}
+    .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.55);display:none;align-items:center;justify-content:center}
+    .modal{width:min(640px,96%);padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+    input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+    .muted{color:var(--muted);font-size:13px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">WS</div>
+        <div>
+          <div style="font-weight:700">WORK SHOP</div>
+          <div class="muted">Single-file contact demo</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+        <button class="btn" id="openDemo">Try demo</button>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section class="card">
+        <h1>workshop app</h1>
+        <p class="lead">This template demonstrates a contact form that opens your email client and populates the recipient .</p>
+
+        <h3 id="features" style="margin-top:12px">Core features</h3>
+        <div class="grid-3" style="margin-top:8px">
+          <div class="item">
+            <strong>mailto contact</strong>
+            <div class="muted">Opens user's email client with pre-filled subject & body</div>
+          </div>
+          <div class="item">
+            <strong>Responsive layout</strong>
+            <div class="muted">Adapts to mobile</div>
+          </div>
+          <div class="item">
+            <strong>Light JS</strong>
+            <div class="muted">Small interactions only</div>
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:14px 0" />
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card" style="margin-bottom:12px">
+          <h4 style="margin:0 0 8px 0">Live demo</h4>
+          <label class="muted">Your name</label>
+          <input id="nameInput" placeholder="Type your name" aria-label="Name input" />
+          <div style="height:10px"></div>
+          <button class="btn" id="greetBtn">Greet</button>
+          <p id="greetOutput" style="margin-top:12px;color:var(--muted)"></p>
+        </div>
+      </aside>
+    </main>
+
+    <section id="contact" class="card" style="margin-top:18px">
+      <h3>Contact</h3>
+      <form id="contactForm">
+        <div class="row">
+          <input name="full" id="fullName" placeholder="Full name" required />
+          <input name="email" id="email" type="email" placeholder="Your email" required />
+        </div>
+
+        <div style="height:10px"></div>
+
+        <label class="muted" for="subject">Subject (optional)</label>
+        <input id="subject" name="subject" placeholder="Subject" />
+
+        <div style="height:8px"></div>
+
+        <textarea name="message" id="message" rows="6" placeholder="Enter your message or paste your code here" required></textarea>
+
+        <div style="height:8px"></div>
+        <button class="btn" type="submit">Send </button>
+        <div id="formMsg" style="margin-top:8px;color:var(--muted)"></div>
+      </form>
+    </section>
+
+    <footer>
+      © <span id="year"></span> WebApp • Built single-file
+    </footer>
+  </div>
+
+  <div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document">
+      <h3 id="modalTitle">Demo modal</h3>
+      <p id="modalBody" class="muted">This is a lightweight modal.</p>
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:12px">
+        <button id="closeModal" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // recipient address requested by user
+    const RECIPIENT = 'sarangps251@gmail.com';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // modal helpers (same as before)
+    const modalBg = document.getElementById('modalBg');
+    function openModal(title, body){
+      document.getElementById('modalTitle').textContent = title || 'Modal';
+      document.getElementById('modalBody').textContent = body || '';
+      modalBg.style.display = 'flex';
+      modalBg.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){ modalBg.style.display = 'none'; modalBg.setAttribute('aria-hidden','true'); }
+    document.getElementById('openDemo').addEventListener('click', (e)=>{ e.preventDefault(); openModal('Welcome demo','This template builds a mailto link from the contact form.'); });
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    modalBg.addEventListener('click', (e)=>{ if(e.target===modalBg) closeModal(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modalBg.style.display==='flex') closeModal(); });
+
+    // small greeting widget
+    document.getElementById('greetBtn').addEventListener('click', ()=>{
+      const name = (document.getElementById('nameInput').value||'friend').trim();
+      document.getElementById('greetOutput').textContent = `Hello, ${name}! Nice to meet you.`;
+    });
+
+    // contact form behavior — constructs a mailto: link and opens it
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const full = document.getElementById('fullName').value.trim();
+      const from = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Website contact';
+      const message = document.getElementById('message').value.trim();
+
+      if(!full || !from || !message){
+        document.getElementById('formMsg').textContent = 'Please complete all required fields.';
+        return;
+      }
+
+      // Build a readable body including the sender's email and name.
+      // Encode components to be safe for mailto.
+      const bodyLines = [
+        `Name: ${full}`,
+        `Email: ${from}`,
+        '',
+        'Message:',
+        message
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+
+      // Create subject including sender name
+      const mailtoSubject = encodeURIComponent(`${subject} — from ${full}`);
+
+      // Build the mailto URL and open it. This launches the user's mail client.
+      const mailto = `mailto:${RECIPIENT}?subject=${mailtoSubject}&body=${body}`;
+
+      // Try opening new window first (some browsers blocked), fall back to location change.
+      try {
+        window.open(mailto);
+        document.getElementById('formMsg').textContent = 'Opening your email client...';
+      } catch(err){
+        window.location.href = mailto;
+        document.getElementById('formMsg').textContent = 'Opening your email client...';
+      }
+
+      // Optionally clear the form for UX (so user can send again if needed)
+      this.reset();
+    });
+  </script>
+</body>
+</html>
